@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF=8">
+	<title>Bot Pair-Trading</title>
+</head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<body>
+
+<div class="container">
+ 
+	<FORM id='submit_params' method="POST" action="{{ url_for('main') }}">
+
+		<table  style="background-color:black;" border = 0>
+		    <tr>
+		    	<TD>
+					<p style="text-align:center">
+						<img src="static/images/fondo.png" alt="trade bot" style='padding:0px; border:0px solid #021a40; width: 100%; height: 100%'>
+					</p>
+				</TD>
+		</tr>
+		<tr>
+			<td>
+
+				<div class="container-fluid">
+				<div class="row">
+		  
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<p style="text-align:center">
+						<img src="static/images/up.png" alt="compra" style='padding:0px; border:0px solid #021a40; width: 20%; height: 20%'>
+						
+						<BR><font color="white">Compra: <B>{{size_largo}}</b> acciones<BR>Stock: <B>{{largo}}</B><BR>a: $<B>{{largo_ult}}</B></font>
+					</p>
+				</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<label for="male"><font color="white">Cartera Limite:</font></label><BR>
+						<input type="number" class="form-control" id="fare"
+						       placeholder="Introduce el monto a invertir.." name="cartera" value="{{cartera}}"><BR>
+							<button class="btn btn-default" type="submit" style="width: 100%; height: 30px;">TRADE</button>
+				</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<p style="text-align:center">
+						<img src="static/images/down.png" alt="venta" style='padding:0px; border:0px solid #021a40; width: 20%; height: 20%'>
+						<BR><font color="white">Venta: <B>{{size_corto}}</b> acciones<BR>Stock: <B>{{corto}}</B><BR>a: $<B>{{corto_ult}}</B></font>
+					 </p> 
+				</div>
+			</div>
+			</div>
+			</td>
+		</tr>
+	</table>
+</form>
+ 
+</div>
+</body>
+</html>
