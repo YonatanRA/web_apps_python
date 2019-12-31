@@ -1,106 +1,138 @@
-#!/usr/bin/env python
-from flask import Flask, render_template, flash, request, jsonify, Markup
-# added code to avoid Tkinter errors
+# librerias
+from flask import Flask 
+from flask import render_template
+from flask import flash 
+from flask import request
+from flask import jsonify
+from flask import Markup
+
+
 import matplotlib
 matplotlib.use('agg')
-import io, base64, os
+
+import io
+import base64
+import os
 import pandas as pd
 import numpy as np
 
-# default traveler constants
-DEFAULT_BUDGET = 10000
-TRADING_DAYS_LOOP_BACK = 90
-INDEX_SYMBOL = ['^DJI']
-STOCK_SYMBOLS = ['BA','GS','UNH','MMM','HD','AAPL','MCD','IBM','CAT','TRV']
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# global variables
-stock_data_df = None
+
+
+
+# constantes
+CARTERA=10000
+DIAS_ATRAS=90
+INDICE=['^DJI']
+STOCKS=['BA','GS','UNH','MMM','HD','AAPL','MCD','IBM','CAT','TRV']
+PATH=os.path.dirname(os.path.abspath(__file__))
+
+# variables globales
+stock_data=None
 
 app = Flask(__name__)
- 
 
-def prepare_pivot_market_data_frame():
-    # prep data
-    # loop through each stock and load csv
-    stock_data_list = []
-    for stock in INDEX_SYMBOL + STOCK_SYMBOLS:
-        src = os.path.join(BASE_DIR, 'data/' +stock + '.csv')
-        print (src)
-        tmp = pd.read_csv(src)
-        tmp['Symbol'] = stock
-        tmp = tmp[['Symbol', 'Date', 'Adj Close']]
-        stock_data_list.append(tmp)
 
-    stock_data = pd.concat(stock_data_list)
 
-    stock_data = stock_data.pivot('Date','Symbol')
-    stock_data.columns = stock_data.columns.droplevel()
-    stock_data = stock_data.tail(90)
+# funcion para preparar los datos, todos los csv en una pivot table
+# devuelve un dataframe
+def data():
+    stock_data=[]
+    
+    for e in INDICE+STOCKS:
+        src=os.path.join(PATH, 'data/'+ e +'.csv')
+        df=pd.read_csv(src)
+        df['Symbol']=e
+        df=df[['Symbol', 'Date', 'Adj Close']]
+        stock_data.append(df)
+
+    stock_data=pd.concat(stock_data)
+
+    stock_data=stock_data.pivot('Date','Symbol')
+    stock_data.columns=stock_data.columns.droplevel()
+    stock_data=stock_data.tail(90)
 
     return (stock_data)
 
 
+
+# antes del primer request, haz la pivot table
 @app.before_first_request
 def startup():
-    global stock_data_df
+    global stock_data
+    stock_data=data()
 
-     # prepare pair trading data
-    stock_data_df = prepare_pivot_market_data_frame()
+    
+    
 
+# funcion para microservicio
+# todo, salvo el html, esta aqui
+@app.route('/', methods=['POST', 'GET'])
+def main():
+    if request.method=='POST':   # para html, subida
+        cartera=request.form['cartera']  
+        if cartera=='':  cartera=10000
 
-@app.route("/", methods=['POST', 'GET'])
-def get_pair_trade():
-    if request.method == 'POST':
-        selected_budget = request.form['selected_budget']
-        # make sure the field isn't blank
-        if selected_budget == '':
-            selected_budget = 10000
-
-        # calculate widest spread
-        stock1 = '^DJI'
-        last_distance_from_index = {}
-        temp_series1 = stock_data_df[stock1].pct_change().cumsum()
-        for stock2 in list(stock_data_df):
-            # no need to process itself
-            if (stock2 != stock1):
-                temp_series2 = stock_data_df[stock2].pct_change().cumsum()
-                # we are subtracting the stock minus the index, if stock is strong compared
-                # to index, we assume a postive value
-                diff = list(temp_series2 - temp_series1)
-                last_distance_from_index[stock2] = diff[-1]
-
-        weakest_symbol = min(last_distance_from_index.items(), key=lambda x: x[1])
-        strongest_symbol = max(last_distance_from_index.items(), key=lambda x: x[1])
-
-        # budget trade size
-        short_symbol = strongest_symbol[0]
-        short_last_close = stock_data_df[strongest_symbol[0]][-1]
-
-        long_symbol = weakest_symbol[0]
-        long_last_close = stock_data_df[weakest_symbol[0]][-1]
-
+        # calcula el spread
+        stock1='^DJI'
+        distancias={}
+        
+        serie1=stock_data[stock1].pct_change().cumsum()
+        
+        for stock2 in list(stock_data):
+            if (stock1!=stock2):
+                serie2=stock_data[stock2].pct_change().cumsum()
+                diff=list(serie2-serie1)
+                distancias[stock2]=diff[-1]
+                
+            
+        # stock mas debil y stock mas fuerte
+        debil=min(distancias.items(), key=lambda x: x[1])
+        fuerte=max(distancias.items(), key=lambda x: x[1])
+        
+        
+        # sentido del trade
+        corto=fuerte[0]
+        corto_ult=stock_data[fuerte[0]][-1]
+        
+        largo=debil[0]
+        largo_ult=stock_data[debil[0]][-1]
+        
+        
+        # se renderiza el html
         return render_template('index.html',
-            short_symbol = short_symbol,
-            long_symbol = long_symbol,
-            short_last_close = round(short_last_close,2),
-            short_size = round((float(selected_budget) * 0.5) / short_last_close,2),
-            long_last_close = round(long_last_close,2),
-            long_size = round((float(selected_budget) * 0.5) / long_last_close,2),
-            selected_budget = selected_budget)
-
-    else:
-        # set default passenger settings
+                               corto=corto,
+                               largo=largo,
+                               corto_ult=round(corto_ult,2),
+                               size_corto=round((float(cartera)*.5)/corto_ult,2),
+                               largo_ult=round(largo_ult,2),
+                               size_largo=round((float(cartera)*.5)/largo_ult,2),
+                               cartera=cartera)
+    
+    
+    
+    else:   # parametros por defecto
+        
+        
         return render_template('index.html',
-            short_symbol = "None",
-            long_symbol = "None",
-            short_last_close = 0,
-            short_size = 0,
-            long_last_close = 0,
-            long_size = 0,
-            selected_budget = DEFAULT_BUDGET)
+                               corto='Nada',
+                               largo='Nada',
+                               corto_ult=0,
+                               size_corto=0,
+                               largo_ult=0,
+                               size_largo=0,
+                               cartera=CARTERA)
+    
+     
 
+    
+# ejecucion 
 if __name__=='__main__':
     app.run(debug=True)
-
-
+    
+    
+    
+    
+    
+    
+    
