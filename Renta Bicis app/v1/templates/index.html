@@ -273,9 +273,30 @@
 			y_pred = INTERCEPT 
 			+ (HOLIDAY * COEF_HOLIDAY)  
 		    + (HOUR * COEF_HOUR)  
-		    + (SEASON_1 * COEF_SEASON_1)  + (SEASON_2 * COEF_SEASON_2)  
-		    + (SEASON_3 * COEF_SEASON_3)  + (SEASON_4 * COEF_SEASON_4)  
+		    + (YEAR * COEF_YEAR)
+			+ (HUM * COEF_HUM) 
+			+ (TEMP * COEF_TEMP)
+			+ (ATEMP * COEF_ATEMP) 
+			+ (WINDSPEED * COEF_WINDSPEED)
 		    + (TEMP * COEF_TEMP)
+		    + (SEASON_1 * COEF_SEASON_1)  
+		    + (SEASON_2 * COEF_SEASON_2)  
+		    + (SEASON_3 * COEF_SEASON_3)  
+		    + (SEASON_4 * COEF_SEASON_4)  
+		    + (WEATHERSIT_1 * COEF_WEATHERSIT_1)
+			+ (WEATHERSIT_2 * COEF_WEATHERSIT_2)
+			+ (WEATHERSIT_3 * COEF_WEATHERSIT_3)
+			+ (WEATHERSIT_4 * COEF_WEATHERSIT_4) 
+			+ (WEEKDAY_1 * COEF_WEEKDAY_1)
+			+ (WEEKDAY_2 * COEF_WEEKDAY_2)
+			+ (WEEKDAY_3 * COEF_WEEKDAY_3)
+			+ (WEEKDAY_4 * COEF_WEEKDAY_4)
+			+ (WEEKDAY_5 * COEF_WEEKDAY_5)
+			+ (WEEKDAY_6 * COEF_WEEKDAY_6)
+			+ (WEEKDAY_0 * COEF_WEEKDAY_0) 
+			+ (HR1 * COEF_HR1)
+			+ (HR2 * COEF_HR2)
+		    
 
 			// imagenes
 			imagen_n_bicis = 'static/images/dieciseis.png'
