@@ -56,7 +56,7 @@
 
 						</TD>
 						<TD>
-							<img src="../static/images/bike_one.png" alt="Bicycle" id="bike_out"
+							<img src="../static/images/una.png" alt="Bicicleta" id="bicis"
 				              style='padding:1px; border:0px solid #021a40; width: 500px; height:500px;'>
 				              <BR>
 				              <font size="4" color="blue" id="query">Listo</font>
@@ -270,7 +270,7 @@
 			}  
 
 			// recalculate the regression equation
-			rental_counts = INTERCEPT 
+			y_pred = INTERCEPT 
 			+ (HOLIDAY * COEF_HOLIDAY)  
 		    + (HOUR * COEF_HOUR)  
 		    + (SEASON_1 * COEF_SEASON_1)  + (SEASON_2 * COEF_SEASON_2)  
@@ -278,24 +278,28 @@
 		    + (TEMP * COEF_TEMP)
 
 			// figure out which image to show
-			bike_out = 'static/images/bike_sixteen.png'
-		    if (rental_counts < 0) {
-		    	rental_counts = 0
-		    	bike_out = 'static/images/bike_zero.png'
-		    } else if (rental_counts < 100) {
-		    	bike_out = 'static/images/bike_one.png'
-		    } else if (rental_counts < 200) {
-		    	bike_out = 'static/images/bike_four.png'
-		    } else if (rental_counts < 300) {
-		    	bike_out = 'static/images/bike_nine.png'}
+			imagen_n_bicis = 'static/images/dieciseis.png'
+			
+		    if (y_pred < 0) {
+		    	y_pred = 0
+		    	imagen_n_bicis  = 'static/images/cero.png'
+		    	
+		    } else if (y_pred < 100) {
+		    	imagen_n_bicis  = 'static/images/una.png'
+		    	
+		    } else if (y_pred < 200) {
+		    	imagen_n_bicis = 'static/images/cuatro.png'
+		    	
+		    } else if (y_pred < 300) {
+		    	imagen_n_bicis  = 'static/images/nueve.png'}
 
 			// build a new string that is readable with variables select by user
 			// and new bike rental estimate
-			output = 'For ' + season + ' + ' + holiday + ' + ' + temp + ' + ' + hour + ' = ' + Math.round(rental_counts) + ' bikes';
+			salida = 'Para estar en ' + season + ' y ser ' + holiday + ' con una temperatura de ' + temp + ' a las ' + hour + ' la prediccion es ' + Math.round(y_pred) + ' bicis';
 		}
 		// inject new value and image source directly into the HTML tag
-	    document.getElementById("query").innerHTML = output;
-	    document.getElementById('bike_out').src = bike_out
+	    document.getElementById('query').innerHTML = salida;
+	    document.getElementById('bicis').src = imagen_n_bicis
   
 	}
 </SCRIPT>
