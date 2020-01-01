@@ -269,7 +269,7 @@
 				season = 'Invierno'
 			}  
 
-			// recalculate the regression equation
+			// recalcula la regresion
 			y_pred = INTERCEPT 
 			+ (HOLIDAY * COEF_HOLIDAY)  
 		    + (HOUR * COEF_HOUR)  
@@ -277,7 +277,7 @@
 		    + (SEASON_3 * COEF_SEASON_3)  + (SEASON_4 * COEF_SEASON_4)  
 		    + (TEMP * COEF_TEMP)
 
-			// figure out which image to show
+			// imagenes
 			imagen_n_bicis = 'static/images/dieciseis.png'
 			
 		    if (y_pred < 0) {
@@ -293,11 +293,10 @@
 		    } else if (y_pred < 300) {
 		    	imagen_n_bicis  = 'static/images/nueve.png'}
 
-			// build a new string that is readable with variables select by user
-			// and new bike rental estimate
+			// string de salida
 			salida = 'Para estar en ' + season + ' y ser ' + holiday + ' con una temperatura de ' + temp + ' a las ' + hour + ' la prediccion es ' + Math.round(y_pred) + ' bicis';
 		}
-		// inject new value and image source directly into the HTML tag
+		// nuevos valores sobre el HTML
 	    document.getElementById('query').innerHTML = salida;
 	    document.getElementById('bicis').src = imagen_n_bicis
   
