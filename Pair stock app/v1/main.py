@@ -24,7 +24,7 @@ PATH=os.path.dirname(os.path.abspath(__file__))
 # variables globales
 stock_data=None
 
-app = Flask(__name__)
+app=Flask(__name__)
 
 
 
