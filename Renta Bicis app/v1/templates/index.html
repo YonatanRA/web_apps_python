@@ -23,7 +23,7 @@
 <DIV class="container">
 	<TABLE border=0 cellpadding="1">
 		<TR>
-	        <td colspan="3"  style="background-color:silver;"><div align="center"><H1><font color="black">Prediccion Demanda Bicicletas<BR>D</font></H1></div></td>
+	        <td colspan="3"  style="background-color:silver;"><div align="center"><H1><font color="black">Prediccion Demanda Bicicletas<BR>Selecciona</font></H1></div></td>
 	    </TR>
 		<TR>
 			<TD>
@@ -318,7 +318,7 @@
 			salida = 'Para estar en ' + season + ' y ser ' + holiday + ' con una temperatura de ' + temp + ' a las ' + hour + ' la prediccion es ' + Math.round(y_pred) + ' bicis';
 		}
 		// nuevos valores sobre el HTML
-	    document.getElementById('query').innerHTML = salida;
+	    document.getElementById("query").innerHTML = salida;
 	    document.getElementById('bicis').src = imagen_n_bicis
   
 	}
