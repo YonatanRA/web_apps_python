@@ -8,6 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import io
+import os
 import base64
 
 import numpy as np
@@ -16,7 +17,10 @@ from sklearn.linear_model import LogisticRegression as LogReg
 from sklearn.model_selection import train_test_split as tts
  
 
-    
+# necesario en pythonanywhere
+PATH=os.path.dirname(os.path.abspath(__file__))
+
+
 # default inicial
 EMBARKED='Southampton'
 FARE=33
@@ -49,7 +53,7 @@ app=Flask(__name__)
 def startup():
     global tasa_media, logreg
     
-    data=genfromtxt('data/titanic.csv', delimiter=',')
+    data=genfromtxt(PATH+'/data/titanic.csv', delimiter=',')
     
     tasa_media=(np.mean([e[0] for e in data])*100)
 
@@ -223,7 +227,7 @@ def main():
     
     
     
-    
+# solo para local 
 if __name__=='__main__':
     app.run(debug=True)
     
