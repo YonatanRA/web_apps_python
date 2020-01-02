@@ -1,19 +1,20 @@
-# librerias
 from flask import Flask
 from flask import render_template
-
+from flask import request
 
 import pandas as pd
-
+import os
     
 # inicia Flask
 app = Flask(__name__)
 
 
-    
+
+# directorio base
+PATH=os.path.dirname(os.path.abspath(__file__))
+#PATH=''
 # coeficientes
 coefs=None
-
 
 # valores medios como datos de entrada
 input_data=None
@@ -22,10 +23,16 @@ input_data=None
 @app.before_first_request
 def startup():
     global coefs
-    coefs=pd.read_csv('data/coefs.csv').set_index('carac').to_dict()['coef']
+   # path_cofs=os.path.join()
+    coefs=pd.read_csv(PATH+'/data/coefs.csv')\
+            .set_index('carac')\
+            .to_dict()['coef']
     
     global input_data
-    input_data=pd.read_csv('data/means.csv', names=['carac', 'coef']).set_index('carac').to_dict()['coef']
+    input_data=pd.read_csv(PATH+'/data/means.csv', 
+                           names=['carac', 'coef'])\
+                 .set_index('carac')\
+                 .to_dict()['coef']
     
 
 # cuando carga, son los valores por defecto
@@ -90,3 +97,6 @@ def main():
 
 
 
+# para ejecutar en local
+if __name__=='__main__':
+      app.run(debug=True)
