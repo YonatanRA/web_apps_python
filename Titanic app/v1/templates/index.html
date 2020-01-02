@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF=8">
-	<title>Titanic Journey Simulation</title>
+	<title>Titanic Survival</title>
 </head>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-<form id='submit_params' method="POST" action="{{ url_for('submit_new_profile') }}">
+<form id='submit_params' method="POST" action="{{ url_for('main') }}">
 <div class="form-group">
 <table class="table">
     <tr>
@@ -31,8 +31,8 @@
                 <tr>
                     <td><label for="male">Port of Embarcation</label></td>
                     <td>
-                     <SELECT class="selectpicker" name="selected_embarked">
-				          <option value="{{selected_embarked}}" selected>{{selected_embarked}}</option>
+                     <SELECT class="selectpicker" name="s_embarked">
+				          <option value="{{s_embarked}}" selected>{{s_embarked}}</option>
 				          <option>Cherbourg</option>
 				          <option>Queenstown</option>
 				          <option>Southampton</option>
@@ -42,14 +42,14 @@
                 <tr>
                     <td><label for="male">Fare</label></td>
                     <td><input type="number" class="form-control" id="fare"
-                    	placeholder="Enter fare" name="selected_fare" value="{{selected_fare}}">
+                    	placeholder="Enter fare" name="s_fare" value="{{s_fare}}">
                     </td>
                 </tr>
                 <tr>
                     <td><label for="male">Age</label></td>
                     <td>
-                       <SELECT class="selectpicker" name="selected_age">
-				        <option value="{{selected_age}}" selected>{{selected_age}}</option>
+                       <SELECT class="selectpicker" name="s_age">
+				        <option value="{{s_age}}" selected>{{s_age}}</option>
 				       {% for age in range(0,100) %}
 				           <option>{{age}}</option>
 				       {% endfor %}
@@ -59,8 +59,8 @@
                 <tr>
                     <td><label for="male">Gender</label></td>
                     <td>
-                     <SELECT class="selectpicker" name="selected_gender">
-				          <option value="{{selected_gender}}" selected>{{selected_gender}}</option>
+                     <SELECT class="selectpicker" name="s_gender">
+				          <option value="{{s_gender}}" selected>{{s_gender}}</option>
 				          <option value='Male'>Male</option>
 				          <option value='Female'>Female</option>
 				      </SELECT>
@@ -69,8 +69,8 @@
                 <tr>
                     <td><label for="male">Title</label></td>
                     <td>
-                     <SELECT class="selectpicker" name="selected_title">
-						<option value="{{selected_title}}" selected>{{selected_title}}</option>
+                     <SELECT class="selectpicker" name="s_title">
+						<option value="{{s_title}}" selected>{{s_title}}</option>
 						<option value="Dr.">Dr.</option>
 						<option value="Master.">Master.</option>
 						<option value="Miss.">Miss.</option>
@@ -85,8 +85,8 @@
                 <tr>
                     <td><label for="male">Class</label></td>
                     <td>
-                     <SELECT class="selectpicker" name="selected_class">
-						<option value="{{selected_class}}" selected>{{selected_class}}</option>
+                     <SELECT class="selectpicker" name="s_class">
+						<option value="{{s_class}}" selected>{{s_class}}</option>
 						<option value='First'>First</option>
 						<option value='Second'>Second</option>
 						<option value='Third'>Third</option>
@@ -95,8 +95,8 @@
                 <tr>
                     <td><label for="male">Cabin</label></td>
                     <td>
-                     <SELECT class="selectpicker" name="selected_cabin">
-						<option value="{{selected_cabin}}" selected>{{selected_cabin}}</option>
+                     <SELECT class="selectpicker" name="s_cabin">
+						<option value="{{s_cabin}}" selected>{{s_cabin}}</option>
 						<option>A</option>
 						<option>B</option>
 						<option>C</option>
@@ -111,8 +111,8 @@
                 <tr>
                     <td><label for="male">Number of Siblings/Spouses</label></td>
                     <td>
-                    	<SELECT class="selectpicker" name="selected_sibsp">
-				        <option value="{{selected_sibsp}}" selected>{{selected_sibsp}}</option>
+                    	<SELECT class="selectpicker" name="s_sibsp">
+				        <option value="{{s_sibsp}}" selected>{{s_sibsp}}</option>
 				       {% for sibsp in range(0,10) %}
 				           <option>{{sibsp}}</option>
 				       {% endfor %}
@@ -122,8 +122,8 @@
                 <tr>
                     <td><label for="male">Number of Parents/Children</label></td>
                     <td>
-                    	<SELECT class="selectpicker" name="selected_parch">
-				        <option value="{{selected_parch}}" selected>{{selected_parch}}</option>
+                    	<SELECT class="selectpicker" name="s_parch">
+				        <option value="{{s_parch}}" selected>{{s_parch}}</option>
 				       {% for parch in range(0,10) %}
 				           <option>{{parch}}</option>
 				       {% endfor %}
