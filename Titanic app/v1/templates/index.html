@@ -18,18 +18,18 @@
 <div class="form-group">
 <table class="table">
     <tr>
-        <td width="300px"><p style="text-align:center"><h1>Chapter 3<BR>Design Your Titanic Traveler</h1></p></td>
+        <td width="300px"><p style="text-align:center"><h1>Aplicacion con <BR>Regresion Logistica</h1></p></td>
         <td><p style="text-align:center">
 			<img src="static/images/small_titanic.jpg" alt="titanic" style='padding:1px; border:1px solid #021a40; width: 80%; height: 80%'>
 			</p>
 		</td>
-        <td width="200px"><p style="text-align:center"><h3>Cabin and Port of Embarcation Details</h3></p></td>
+        <td width="200px"><p style="text-align:center"><h3>Detalles Cabina y Puerto de Embarque</h3></p></td>
     </tr>
     <tr>
         <td>
             <table class="table" border=0 >
                 <tr>
-                    <td><label for="male">Port of Embarcation</label></td>
+                    <td><label for="male">Puerto de Embarque</label></td>
                     <td>
                      <SELECT class="selectpicker" name="s_embarked">
 				          <option value="{{s_embarked}}" selected>{{s_embarked}}</option>
@@ -40,13 +40,13 @@
 					</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Fare</label></td>
+                    <td><label for="male">Tarifa</label></td>
                     <td><input type="number" class="form-control" id="fare"
                     	placeholder="Enter fare" name="s_fare" value="{{s_fare}}">
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="male">Age</label></td>
+                    <td><label for="male">Edad</label></td>
                     <td>
                        <SELECT class="selectpicker" name="s_age">
 				        <option value="{{s_age}}" selected>{{s_age}}</option>
@@ -57,17 +57,17 @@
 				    </td>
                 </tr>
                 <tr>
-                    <td><label for="male">Gender</label></td>
+                    <td><label for="male">Genero</label></td>
                     <td>
                      <SELECT class="selectpicker" name="s_gender">
 				          <option value="{{s_gender}}" selected>{{s_gender}}</option>
-				          <option value='Male'>Male</option>
-				          <option value='Female'>Female</option>
+				          <option value='Male'>Hombre</option>
+				          <option value='Female'>Mujer</option>
 				      </SELECT>
 					</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Title</label></td>
+                    <td><label for="male">Titulo</label></td>
                     <td>
                      <SELECT class="selectpicker" name="s_title">
 						<option value="{{s_title}}" selected>{{s_title}}</option>
@@ -83,17 +83,17 @@
 					</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Class</label></td>
+                    <td><label for="male">Clase</label></td>
                     <td>
                      <SELECT class="selectpicker" name="s_class">
 						<option value="{{s_class}}" selected>{{s_class}}</option>
-						<option value='First'>First</option>
-						<option value='Second'>Second</option>
-						<option value='Third'>Third</option>
+						<option value='First'>Primera</option>
+						<option value='Second'>Segunda</option>
+						<option value='Third'>Tercera</option>
 					</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Cabin</label></td>
+                    <td><label for="male">Cabina</label></td>
                     <td>
                      <SELECT class="selectpicker" name="s_cabin">
 						<option value="{{s_cabin}}" selected>{{s_cabin}}</option>
@@ -109,7 +109,7 @@
 					</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Number of Siblings/Spouses</label></td>
+                    <td><label for="male">Numero de hermanos/esposos</label></td>
                     <td>
                     	<SELECT class="selectpicker" name="s_sibsp">
 				        <option value="{{s_sibsp}}" selected>{{s_sibsp}}</option>
@@ -120,7 +120,7 @@
 				  	</td>
                 </tr>
                 <tr>
-                    <td><label for="male">Number of Parents/Children</label></td>
+                    <td><label for="male">Numero de padres/hijos</label></td>
                     <td>
                     	<SELECT class="selectpicker" name="s_parch">
 				        <option value="{{s_parch}}" selected>{{s_parch}}</option>
@@ -138,12 +138,12 @@
         <td>{{model_results}}<BR>{{model_plot}}
         </td>
         <td>
-        	<p style="text-align:center">Cabin Key</p>
+        	<p style="text-align:center">Detalle de cabina</p>
         	<p style="text-align:center">
 			<img src="static/images//small_cabin_location.png" alt="cabin locations" style='padding:1px; border:1px solid #021a40; width: 100%; height: 100%'>
 			</p></td>
     </tr>
-    <td><button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">All Aboard!</button></td><td></td><td></td>
+    <td><button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">¡Todos a bordo!</button></td><td></td><td></td>
     <tr>
 </table>
 </div>
