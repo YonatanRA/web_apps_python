@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # directorio base
 PATH=os.path.dirname(os.path.abspath(__file__))
-#PATH=''
+
 # coeficientes
 coefs=None
 
@@ -97,6 +97,5 @@ def main():
 
 
 
-# para ejecutar en local
-if __name__=='__main__':
-      app.run(debug=True)
+
+
