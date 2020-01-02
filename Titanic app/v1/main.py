@@ -1,15 +1,14 @@
 from flask import Flask
 from flask import render_template
-from flask import flash
 from flask import request
-from flask import jsonify
 from flask import Markup
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-import io, base64, os
+import io
+import base64
 
 import numpy as np
 from numpy import genfromtxt
@@ -173,9 +172,6 @@ def main():
         
         # prediccion
         y_prob=logreg.predict_proba(pasajero)
-        
-        prob_super=y_prob[0][1]*100
-        
         
         # plot
         with plt.xkcd():
