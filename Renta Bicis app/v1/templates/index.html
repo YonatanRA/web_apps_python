@@ -49,7 +49,7 @@
 							<table cellpadding=5 border=0>
 								<TR><TD></TD></TR>
 								<TR><TD><button type="button" onclick="calcular_demanda(this)" id="laboral" class="btn btn-secondary btn-circle btn-xl"><i class="fa fa-check">Laboral</i></button></TD></TR>
-								<TR><TD><button type="button" onclick="calcular_demanda(this)" id="holiday" class="btn btn-warning btn-circle btn-xl"><i class="fa fa-check">Fiesta</i></button></TD></TR>
+								<TR><TD><button type="button" onclick="calcular_demanda(this)" id="fiesta" class="btn btn-warning btn-circle btn-xl"><i class="fa fa-check">Fiesta</i></button></TD></TR>
 								<TR><TD><button type="button" class="btn btn btn-circle btn-xl"></button></TD></TR>
 								<TR><TD><button type="button" onclick="calcular_demanda(this)" id="reset" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-check">Reset</i></button></TD></TR>
 							</table>
@@ -113,12 +113,29 @@
 	// input_data
 	var HOLIDAY = {{holiday}}   	// si es dia de fiesta o no
 	var HOUR = {{hr}}       		// hora (de 0 a 23)
+	var YEAR = {{yr}} 
+	var	HUM = {{hum}} 
+	var TEMP = {{temp}}      		// temperatura en grados centigrados (-8 to +39)
+	var ATEMP = {{atemp}} 
+	var	WINDSPEED = {{windspeed}} 
 	var SEASON_1 = {{season_1}}  	// 1:primavera
 	var SEASON_2 ={{season_2}}  	// 2:verano
 	var SEASON_3 = {{season_3}}  	// 3:otoño
 	var SEASON_4 = {{season_4}}  	// 4:invierno
-	var TEMP = {{temp}}      		// temperatura en grados centigrados (-8 to +39)
-	
+	var	WEATHERSIT_1 = {{weathersit_1}}
+	var	WEATHERSIT_2 = {{weathersit_2}}
+	var	WEATHERSIT_3 = {{weathersit_3}}
+	var	WEATHERSIT_4 = {{weathersit_4}}
+	var	WEEKDAY_1 = {{weekday_1}}
+	var	WEEKDAY_2 = {{weekday_2}}
+	var	WEEKDAY_3 = {{weekday_3}}
+	var	WEEKDAY_4 = {{weekday_4}}
+	var	WEEKDAY_5 = {{weekday_5}}
+	var	WEEKDAY_6 = {{weekday_6}}
+	var	WEEKDAY_0 = {{weekday_0}}
+	var	HR1 = {{sum_hr_1}}
+	var	HR2 = {{sum_hr_2}}
+
 	
 	
 	// coeficientes
@@ -240,9 +257,9 @@
 			} else if (elem.id == 'laboral') {
 				HOLIDAY = 0
 				holiday = 'Laboral'
-			} else if (elem.id == 'holiday') {
+			} else if (elem.id == 'fiesta') {
 				HOLIDAY = 1
-				holiday = 'Holiday'
+				holiday = 'Fiesta'
 			} else if (elem.id == 'primavera') {
 				SEASON_1 = 1
 				SEASON_2 = 0
@@ -315,7 +332,7 @@
 		    	imagen_n_bicis  = 'static/images/nueve.png'}
 
 			// string de salida
-			salida = 'Para estar en ' + season + ' y ser ' + holiday + ' con una temperatura de ' + temp + ' a las ' + hour + ' la prediccion es ' + Math.round(y_pred) + ' bicis';
+			salida = season + ', es ' + holiday + '. Temp:' + temp + '. Hora:' + hour + '. Prediccion:' + Math.round(y_pred) + ' bicis';
 		}
 		// nuevos valores sobre el HTML
 	    document.getElementById("query").innerHTML = salida;
