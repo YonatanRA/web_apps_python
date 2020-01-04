@@ -241,7 +241,7 @@
          
     function fetchdata()
     {
-        // AJAX code for dynamic communication between server and client
+        // Codigo AJAX para comunicacion dinamica entre servidor y cliente
         $.getJSON({
             type : "GET",
             url:'{{ url_for('backend') }}',
@@ -264,7 +264,7 @@
         });
     }
 
-    // add event listener to capture changes to wine parameters  
+    // añade escucha (evento) para capturar los cambios de los parametros
     document.addEventListener ("mouseup", function () {fetchdata()}, false);
      
 </script>
