@@ -1,19 +1,16 @@
 # librerias
 from flask import Flask
 from flask import render_template
-from flask import flash
 from flask import request
 from flask import jsonify
-from flask import Markup
 
 import logging
-import io
+
 import os
-import sys
 
 import pandas as pd
 import numpy as np
-import scipy
+
 import pickle
 
 from sklearn.ensemble import GradientBoostingClassifier as GBC
