@@ -33,7 +33,7 @@ gbc=None
 var=None
  
  
-# ruta
+# ruta absoluta
 PATH=os.path.dirname(os.path.abspath(__file__))
     
 
