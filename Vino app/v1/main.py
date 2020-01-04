@@ -82,8 +82,8 @@ def backend():
 
     pred=[3,6,9][np.argmax(prob[0])]
     
-    return jsonify({'quality_prediction':pred, 
-                    'image_name': imagen_vino(n_data['color'], pred)})
+    return jsonify({'prediccion':pred, 
+                    'imagen': imagen_vino(n_data['color'], pred)})
 
 
 # principal
