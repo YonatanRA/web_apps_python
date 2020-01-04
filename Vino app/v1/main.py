@@ -92,8 +92,8 @@ def main():
     logging.warning('index!')
     # carga por defecto
     return render_template('index.html', 
-                           quality_prediction=1, 
-                           image_name='/static/images/vino_tinto_6.jpg')
+                           prediccion=1, 
+                           imagen='/static/images/vino_tinto_6.jpg')
 
 
 
