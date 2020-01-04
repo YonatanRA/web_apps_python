@@ -111,17 +111,17 @@
 
 
             <div class="slidecontainer">
-                <label>Free Sulfur Dioxide: <span id="free_sulfur_dioxide_value"></span></label>
+                <label>Dioxido de Azufre Libre: <span id="free_sulfur_dioxide_value"></span></label>
                 <input type="range" min="1" max="291" value="30" class="slider" id="free_sulfur_dioxide_range" step="5">
             </div>
 
             <div class="slidecontainer">
-                <label>Total Sulfur Dioxide: <span id="total_sulfur_dioxide_value"></span></label>
+                <label>Dioxido de Azufre Total: <span id="total_sulfur_dioxide_value"></span></label>
                 <input type="range" min="5" max="440" value="115" class="slider" id="total_sulfur_dioxide_range" step="5">
             </div>
              
             <div class="slidecontainer">
-                <label>Density: <span id="density_value"></span></label>
+                <label>Densidad: <span id="density_value"></span></label>
                 <input type="range" min="0.98" max="1.04" value="0.99" class="slider" id="density_range" step="0.01">
             </div>
 
@@ -131,7 +131,7 @@
             </div>
              
             <div class="slidecontainer">
-                <label>Sulphates: <span id="sulphates_value"></span></label>
+                <label>Sulfatos: <span id="sulphates_value"></span></label>
                 <input type="range" min="0.2" max="2.0" value="0.5" class="slider" id="sulphates_range" step="0.1">
             </div>
 
@@ -234,9 +234,9 @@
 
     var logger = '';
 
-    function update_dashboard(quality_prediction, image_name){
-        estimated_quality.innerHTML = quality_prediction;
-        img_quality.src = image_name; 
+    function update_dashboard(prediccion, imagen){
+        estimated_quality.innerHTML = prediccion;
+        img_quality.src = imagen; 
     }
          
     function fetchdata()
