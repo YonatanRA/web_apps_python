@@ -74,34 +74,34 @@
             </div>
 
             <div class="slidecontainer">
-                <label>Fixed Acidity: <span id="fixed_acidity_value"></span></label>
+                <label>Acidez Fija: <span id="fixed_acidity_value"></span></label>
                 <input type="range" min="3.5" max="16.5" value="7.5" class="slider" id="fixed_acidity_range" step="0.5">
             </div>
              
             <div class="slidecontainer">
-                <label>Volatile Acidity: <span id="volatile_acidity_value"></span></label>
+                <label>Acidez Volatil: <span id="volatile_acidity_value"></span></label>
                 <input type="range" min="0.08" max="1.60" value="0.38" class="slider" id="volatile_acidity_range" step="0.08">
             </div>
 
             <div class="slidecontainer">
-                <label>Citric Acid: <span id="citric_acid_value"></span></label>
+                <label>Acido Citrico: <span id="citric_acid_value"></span></label>
                 <input type="range" min="0.0" max="1.6" value="0.3" class="slider" id="citric_acid_range" step="0.1">
             </div>
 
             <div class="slidecontainer">
-                <label>Residual Sugar: <span id="residual_sugar_value"></span></label>
+                <label>Azucar Residual: <span id="residual_sugar_value"></span></label>
                 <input type="range" min="0.5" max="66.5" value="5.5" class="slider" id="residual_sugar_range" step="0.5">
             </div>
 
             <div class="slidecontainer">
-                <label>Chlorides: <span id="chlorides_value"></span></label>
+                <label>Cloruros: <span id="chlorides_value"></span></label>
                 <input type="range" min="0.01" max="0.62" value="0.05" class="slider" id="chlorides_range" step="0.01">
             </div>
 
         </td>
 
         <td width="300px"> 
-            <label>Estimated quality score: <span id="estimated_quality"></span></label>
+            <label>Calidad Estimada: <span id="estimated_quality"></span></label>
              <p style="text-align:center">
                 <img src="static/images/vino_tinto_6.jpg" alt="wine quality score" id="img_quality" style='padding:1px; border:1px solid #021a40; width: 100%; height: 100%'>
              </p>
@@ -258,8 +258,8 @@
                 'alcohol': document.getElementById("alcohol_value").innerHTML,
                 'color': document.getElementById("color_value").innerHTML},
             success: function(data){
-                logger = data.quality_prediction;
-                update_dashboard(data.quality_prediction, data.image_name);}
+                logger = data.prediccion;
+                update_dashboard(data.prediccion, data.imagen);}
              
         });
     }
