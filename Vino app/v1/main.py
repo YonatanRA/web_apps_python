@@ -68,7 +68,7 @@ def server_error(e):
 @app.route('/backend', methods=['POST', 'GET'])
 def backend():
     # requests
-    req=[request.args.get(e.replace(' ', '_')) for e in var]
+    req=[float(request.args.get(e.replace(' ', '_'))) for e in var]
     
     # nuevos datos
     n_data={k:v for k,v in zip(var, req)}
