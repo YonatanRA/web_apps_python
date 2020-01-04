@@ -32,6 +32,9 @@ gbc=None
 # variables, caracteristicas
 var=None
  
+ 
+# ruta
+PATH=os.path.dirname(os.path.abspath(__file__))
     
 
 # para cargar las imagenes
@@ -49,9 +52,9 @@ def imagen_vino(color, calidad):
 @app.before_first_request
 def startup():
     global gbc
-    gbc=pickle.load(open('data/gbc.p','rb'))
+    gbc=pickle.load(open(PATH+'/data/gbc.p','rb'))
     global var
-    var=pd.read_csv('data/vino_data.csv').drop('quality', axis=1).columns
+    var=pd.read_csv(PATH+'/data/vino_data.csv').drop('quality', axis=1).columns
 
 
 
@@ -93,7 +96,7 @@ def main():
     # carga por defecto
     return render_template('index.html', 
                            prediccion=1, 
-                           imagen='/static/images/vino_tinto_6.jpg')
+                           imagen=PATH+'/static/images/vino_tinto_6.jpg')
 
 
 
