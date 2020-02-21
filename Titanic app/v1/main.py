@@ -107,9 +107,9 @@ def main():
         pclass_Third=0
         pclass_nan=0
         if (s_class=='Second'):
-            pclass_Second=0
+            pclass_Second=1
         if (s_class=='Third'):
-            pclass_Third=0
+            pclass_Third=1
             
             
         
