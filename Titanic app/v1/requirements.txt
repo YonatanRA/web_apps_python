@@ -9,7 +9,7 @@ scipy
 python-dateutil==2.7.2
 pytz==2018.4
 six==1.11.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 Pillow>=1.0
 matplotlib 
 gunicorn>=19.7.1
