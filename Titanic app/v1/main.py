@@ -16,11 +16,9 @@ from numpy import genfromtxt
 from sklearn.linear_model import LogisticRegression as LogReg
 
  
-
 # necesario en pythonanywhere
 PATH=os.path.dirname(os.path.abspath(__file__))
-
-
+    
 # default inicial
 EMBARKED='Southampton'
 FARE=33
@@ -53,12 +51,15 @@ app=Flask(__name__)
 def startup():
     global tasa_media, logreg
     
-    data=genfromtxt(PATH+'/data/titanic.csv', delimiter=',')
+    data=genfromtxt(PATH+'/data/titanic.csv', delimiter=',') # fuera de jupyter
+    
     
     tasa_media=(np.mean([e[0] for e in data])*100)
 
+    X=[e[1:] for e in data]
+    y=[e[0] for e in data]
     
-    logreg.fit([e[1:] for e in data], [e[0] for e in data])  # se entrena una vez antes de arrancar
+    logreg.fit(X, y)  # se entrena una vez antes de arrancar
     
     
 
@@ -66,7 +67,6 @@ def startup():
 # main app
 @app.route("/", methods=['POST', 'GET'])
 def main():
-    model_results=''
     
     if request.method=='POST':
         s_embarked=request.form['s_embarked']
@@ -91,7 +91,6 @@ def main():
         embarked_Q=1
         embarked_S=0
         embarked_Unknown=0 
-        embarked_nan=0
         if (s_embarked[0]=='Q'):
             embarked_Q = 1
         if (s_embarked[0]=='S'):
@@ -101,7 +100,6 @@ def main():
         # clase
         pclass_Second=0
         pclass_Third=0
-        pclass_nan=0
         if (s_class=='Second'):
             pclass_Second=1
         if (s_class=='Third'):
@@ -116,7 +114,6 @@ def main():
         title_Mrs=0
         title_Rev=0
         title_Unknown=0
-        title_nan=0
         if (s_title=='Master.'):
             title_Master=1
         if (s_title=='Miss.'):
@@ -140,7 +137,6 @@ def main():
         cabin_G=0
         cabin_T=0
         cabin_Unknown=0
-        cabin_nan=0
         if (s_cabin=='B'):
             cabin_B=1
         if (s_cabin=='C'):
@@ -162,16 +158,17 @@ def main():
         
         # pasajero
         pasajero=[[age, sibsp, parch, fare, isfemale, 
-                   pclass_Second, pclass_Third, pclass_nan, 
+                   pclass_Second, pclass_Third,  
                    cabin_B, cabin_C, cabin_D, cabin_E, cabin_F, cabin_G,
-                   cabin_T, cabin_Unknown, cabin_nan, embarked_Q, 
-                   embarked_S, embarked_Unknown, embarked_nan, 
+                   cabin_T, cabin_Unknown, embarked_Q, 
+                   embarked_S, embarked_Unknown,  
                    title_Master, title_Miss, title_Mr, title_Mrs, 
-                   title_Rev, title_Unknown, title_nan]]
+                   title_Rev, title_Unknown]]
         
         
         # prediccion
         y_prob=logreg.predict_proba(pasajero)
+        
         
         # plot
         with plt.xkcd():
@@ -191,7 +188,7 @@ def main():
             
         
         return render_template('index.html',
-            model_results=model_results,
+            model_results='',
             model_plot=Markup('<img src="data:image/png;base64,{}">'.format(plot_url)),
             s_embarked=s_embarked,
             s_fare=s_fare,
@@ -202,8 +199,6 @@ def main():
             s_cabin=s_cabin,
             s_sibsp=s_sibsp,
             s_parch=s_parch)
-    
-    
     
     else:
         # parametros por defecto
@@ -221,15 +216,8 @@ def main():
             s_parch=PARCH)
     
     
-    
-    
-# solo para local 
+
+# solo en local
 if __name__=='__main__':
     app.run(debug=True)
-    
-    
-    
-    
-    
-       
     
