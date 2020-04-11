@@ -57,12 +57,8 @@ def startup():
     
     tasa_media=(np.mean([e[0] for e in data])*100)
 
-    X_train, X_test, y_train, y_test=tts([e[1:] for e in data], 
-                                         [e[0] for e in data], 
-                                         test_size=0.1, 
-                                         random_state=42)
     
-    logreg.fit(X_train, y_train)  # se entrena una vez antes de arrancar
+    logreg.fit([e[1:] for e in data], [e[0] for e in data])  # se entrena una vez antes de arrancar
     
     
 
