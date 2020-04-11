@@ -14,7 +14,7 @@ import base64
 import numpy as np
 from numpy import genfromtxt
 from sklearn.linear_model import LogisticRegression as LogReg
-from sklearn.model_selection import train_test_split as tts
+
  
 
 # necesario en pythonanywhere
